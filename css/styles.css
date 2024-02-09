@@ -71,17 +71,27 @@ img {
     font-size: 14px;
     line-height: 1.1;
     color: #212121;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-element:hover,
 .nav-element:focus {
     color: var(--accent-color);
 }
-.nav-studio {
+.nav-active {
     color: var(--accent-color);
+    position: relative;
 }
-.nav-portfolio {
-    color: var(--accent-color);
+.nav-active::after {
+    position: absolute;
+    bottom: 0;
+    content: '';
+    display: block;
+    background-color: rgba(33, 150, 243, 1);
+    border: 1px;
+    border-radius: 2px;
+    width: 100%;
+    height: 4px;
 }
 .header-contacts {
     margin-left: auto;
@@ -102,6 +112,7 @@ img {
     font-weight: 500;
     line-height: 1.1;
     color: var(--text-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mail:hover,
@@ -126,6 +137,7 @@ img {
     font-weight: 500;
     line-height: 1.1;
     color: var(--text-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .phone:hover,
 .phone:focus {
@@ -218,9 +230,28 @@ img {
 }
 .do-item {
     margin-right: 30px;
+    position: relative;
+
 }
 .do-item:last-child {
     margin-right: 0px;
+}
+.do-dscrptn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    padding-top: 27px;
+    padding-bottom: 27px;
+    width: 100%;    
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    background-color: rgba(47, 48, 58, 0.8);
 }
 
 .team-bcgr {
@@ -282,6 +313,7 @@ img {
     height: 44px;
     border-radius: 50%;
     color: rgba(175, 177, 184, 1);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), cursor 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-link:hover,
 .social-link:focus {
@@ -318,6 +350,7 @@ img {
     border: 1px solid rgba(175, 177, 184, 1);
     border-radius: 4px;
     color: rgba(175, 177, 184, 1);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .clients-link:hover,
 .clients-link:focus {
@@ -353,6 +386,7 @@ img {
     line-height: 1.7;
     font-style: normal;
     color: #FFFFFF;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-mail,
 .footer-phone {
@@ -361,6 +395,7 @@ img {
     line-height: 1.7;
     font-style: normal;
     color: rgba(255, 255, 255, 0.6);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-mail:hover,
 .footer-mail:focus,
@@ -402,10 +437,11 @@ img {
     color: #FFFFFF;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .connect-link:hover,
 .connect-link:focus {
-    background: #2196F3;
+    background-color: #2196F3;
 }
 .connect-icon {
     fill: currentColor;
@@ -434,6 +470,8 @@ img {
     line-height: 1.6;
     color: var(--main-color);
     background-color: #F5F4FA;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), cursor 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    
 }
 .filtr-buttons:hover, 
 .filtr-buttons:focus {
@@ -464,6 +502,7 @@ img {
 }
 .card-link {
     display: block;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-link:hover,
 .card-link:focus {
@@ -472,8 +511,52 @@ img {
                 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
     outline: none;
 }
-.card-image {
+.card-link:hover .card-overlay,
+.card-link:focus .card-image::before {
+    opacity: 1;
+    transform: translateY(0);
 }
+.card-link:hover .card-descr,
+.card-link:focus .card-descr {
+    opacity: 1;
+}
+
+.card-image {
+    position: relative;
+    overflow: hidden;
+
+}
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 150, 243, 0.9);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-descr {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translate(-25%, -25%);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
+}
+
 .card-text {
     border: 1px solid #EEEEEE;
     border-top: 0;
